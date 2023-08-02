@@ -1,0 +1,67 @@
+<!--Rough Sample Code-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Property Tax Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #calculator {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    #result {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <h2>Property Tax Calculator</h2>
+    <label for="propertyValue">Property Value:</label>
+    <input type="number" id="propertyValue" placeholder="Enter the property value">
+    
+    <label for="assessmentRatio">Assessment Ratio:</label>
+    <input type="number" id="assessmentRatio" placeholder="Enter the assessment ratio (%)">
+    
+    <label for="taxRate">Property Tax Rate:</label>
+    <input type="number" id="taxRate" placeholder="Enter the property tax rate (%)">
+    
+    <button onclick="calculatePropertyTax()">Calculate</button>
+    
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculatePropertyTax() {
+      const propertyValue = parseFloat(document.getElementById("propertyValue").value);
+      const assessmentRatio = parseFloat(document.getElementById("assessmentRatio").value);
+      const taxRate = parseFloat(document.getElementById("taxRate").value);
+
+      if (isNaN(propertyValue) || isNaN(assessmentRatio) || isNaN(taxRate)) {
+        alert("Please enter valid numbers for property value, assessment ratio, and tax rate.");
+        return;
+      }
+
+      const assessedValue = propertyValue * (assessmentRatio / 100);
+      const propertyTax = assessedValue * (taxRate / 100);
+      
+      document.getElementById("result").textContent = `Your property tax is: $${propertyTax.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
