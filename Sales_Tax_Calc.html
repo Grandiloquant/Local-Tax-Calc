@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sales Tax Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #calculator {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    #result {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <h2>Sales Tax Calculator</h2>
+    <label for="expense">Estimated Expenses:</label>
+    <input type="number" id="expense" placeholder="Enter your estimated expenses">
+    
+    <label for="salesTaxRate">Sales Tax Rate:</label>
+    <input type="number" id="salesTaxRate" placeholder="Enter the sales tax rate (%)">
+    
+    <button onclick="calculateSalesTax()">Calculate</button>
+    
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateSalesTax() {
+      const expense = parseFloat(document.getElementById("expense").value);
+      const salesTaxRate = parseFloat(document.getElementById("salesTaxRate").value);
+
+      if (isNaN(expense) || isNaN(salesTaxRate)) {
+        alert("Please enter valid numbers for estimated expenses and sales tax rate.");
+        return;
+      }
+
+      const salesTax = expense * (salesTaxRate / 100);
+      
+      document.getElementById("result").textContent = `Your estimated sales tax paid is: $${salesTax.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
