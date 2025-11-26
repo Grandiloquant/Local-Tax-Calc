@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Local Income Tax Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #calculator {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    #result {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <h2>Local Income Tax Calculator</h2>
+    <label for="income">Income:</label>
+    <input type="number" id="income" placeholder="Enter your income">
+    
+    <label for="deductions">Deductions:</label>
+    <input type="number" id="deductions" placeholder="Enter your deductions">
+    
+    <label for="taxRate">Local Income Tax Rate:</label>
+    <input type="number" id="taxRate" placeholder="Enter the local tax rate">
+    
+    <button onclick="calculateTax()">Calculate</button>
+    
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateTax() {
+      const income = parseFloat(document.getElementById("income").value);
+      const deductions = parseFloat(document.getElementById("deductions").value);
+      const taxRate = parseFloat(document.getElementById("taxRate").value);
+
+      if (isNaN(income) || isNaN(deductions) || isNaN(taxRate)) {
+        alert("Please enter valid numbers for income, deductions, and tax rate.");
+        return;
+      }
+
+      const taxableIncome = Math.max(0, income - deductions);
+      const taxAmount = taxableIncome * (taxRate / 100);
+      
+      document.getElementById("result").textContent = `Your local income tax is: $${taxAmount.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>

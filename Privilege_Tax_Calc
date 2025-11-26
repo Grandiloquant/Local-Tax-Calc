@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Privilege Tax Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #calculator {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    #result {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <h2>Privilege Tax Calculator</h2>
+    <label for="grossReceipts">Gross Receipts:</label>
+    <input type="number" id="grossReceipts" placeholder="Enter the gross receipts">
+    
+    <label for="privilegeTaxRate">Privilege Tax Rate:</label>
+    <input type="number" id="privilegeTaxRate" placeholder="Enter the privilege tax rate (%)">
+    
+    <button onclick="calculatePrivilegeTax()">Calculate</button>
+    
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculatePrivilegeTax() {
+      const grossReceipts = parseFloat(document.getElementById("grossReceipts").value);
+      const privilegeTaxRate = parseFloat(document.getElementById("privilegeTaxRate").value);
+
+      if (isNaN(grossReceipts) || isNaN(privilegeTaxRate)) {
+        alert("Please enter valid numbers for gross receipts and privilege tax rate.");
+        return;
+      }
+
+      const privilegeTax = grossReceipts * (privilegeTaxRate / 100);
+      
+      document.getElementById("result").textContent = `Your privilege tax is: $${privilegeTax.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
